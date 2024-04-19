@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiNavigateSQL.View.ShoppingListView"
+             xmlns:vm="clr-namespace:MauiNavigateSQL.ViewModel" 
+             xmlns:model="clr-namespace:MauiNavigateSQL.Model"
+             x:DataType="vm:ShoppingListViewModel"
+             NavigationPage.HasNavigationBar="false"
+             Title="ShoppingList">
+
+    <FlexLayout Direction="Column">
+
+        <Label 
+            Text="ShoppingList"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <CollectionView BackgroundColor="Aqua" FlexLayout.Grow="1"
+                ItemsSource="{Binding Items}" x:DataType="{x:Null}"
+                x:Name="ItemsCollectionView">
+            <CollectionView.ItemTemplate >
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.ItemTapCMD, Source={x:Reference ItemsCollectionView}}" CommandParameter="{Binding}"/>
+                        </Grid.GestureRecognizers>
+                        <Label Grid.Column="0" 
+                               Text="{Binding Description}" 
+                               FontAttributes="Bold"/>
+                        <Label Grid.Column="1" 
+                               Text="{Binding Price}" 
+                               FontAttributes="Bold"/>
+                        <Label Grid.Column="2   " 
+                               Text="{Binding Quantity}" 
+                               FontAttributes="Bold"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>        
+        <Button Text="Add item" 
+                Command="{Binding AddItem}">            
+        </Button>
+        <Button Text="Unsubscribe" 
+                Command="{Binding UnsubscribeCMD}">
+        </Button>
+        <Button Text="Get Items with SQL (Price=42)" 
+                Command="{Binding GetItemsWithSQLCMD}">
+        </Button>        
+
+        <Entry Text="{Binding Simpel}"></Entry>
+    </FlexLayout>
+</ContentPage>

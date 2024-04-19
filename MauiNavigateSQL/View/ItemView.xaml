@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiNavigateSQL.View.ItemView"
+             NavigationPage.HasNavigationBar="false"
+             xmlns:vm="clr-namespace:MauiNavigateSQL.ViewModel"
+             Title="ItemView">
+    
+    <VerticalStackLayout Spacing="1" >
+        <Label 
+            Text="Item"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Entry Text="{Binding ItemProp.Description}" Placeholder="Description" ></Entry>
+        <Entry Text="{Binding ItemProp.Price}" Placeholder="Price"></Entry>
+        <Entry Text="{Binding ItemProp.Quantity}" Placeholder="Quantity"></Entry>
+        <Button Text="Add Item" Command="{Binding AddItem}"></Button>
+        <Button Text="Add Simple Item" Command="{Binding AddSimpleItem}" Padding="2,2"></Button>
+        <Button Text="Back" Command="{Binding BackToList}" Padding="2,2"></Button>
+    </VerticalStackLayout>
+</ContentPage>
